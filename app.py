@@ -34,5 +34,39 @@ filtered_df = df[
     (df["Vehicle"] == selected_vehicle)
 ]
 
-st.subheader(f"📈 Data for {selected_company} - {selected_vehicle}")
+st.subheader(f" Data for {selected_company} - {selected_vehicle}")
 st.dataframe(filtered_df)
+import plotly.express as px
+
+# Line Chart for Quarterly Units
+st.subheader("📈 Quarterly Units Trend")
+fig_units = px.line(
+    filtered_df.sort_values("quarter"),
+    x="quarter",
+    y="Units",
+    title=f"Units Trend Over Time for {selected_company} - {selected_vehicle}",
+    markers=True
+)
+st.plotly_chart(fig_units)
+
+# Line Chart for QoQ Growth
+st.subheader("📊 Quarter-over-Quarter (QoQ) Growth")
+fig_qoq = px.bar(
+    filtered_df.sort_values("quarter"),
+    x="quarter",
+    y="QoQ_Growth",
+    title=f"QoQ Growth for {selected_company} - {selected_vehicle}",
+    text_auto=True
+)
+st.plotly_chart(fig_qoq)
+
+# Line Chart for YoY Growth
+st.subheader("📊 Year-over-Year (YoY) Growth")
+fig_yoy = px.bar(
+    filtered_df.sort_values("quarter"),
+    x="quarter",
+    y="YoY_Growth",
+    title=f"YoY Growth for {selected_company} - {selected_vehicle}",
+    text_auto=True
+)
+st.plotly_chart(fig_yoy)
