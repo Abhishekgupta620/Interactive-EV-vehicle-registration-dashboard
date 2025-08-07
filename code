@@ -19,7 +19,7 @@ df = df.dropna(subset=['quarter'])
 
 # Streamlit UI
 st.title("📊 EV Market Analysis Dashboard")
-st.markdown("Analyze growth of 2W, 3W, 4W vehicles from leading EV companies 🚗⚡")
+st.markdown("Analyze growth of 2W, 3W, 4W vehicles from leading EV companies ")
 
 # Filter section
 company_options = df["Company"].unique()
